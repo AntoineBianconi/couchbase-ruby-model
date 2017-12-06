@@ -89,7 +89,7 @@ module Rails #:nodoc:
         config_file = Rails.root.join('config', 'couchbase.yml')
         if config_file.file? &&
           config = YAML.load(ERB.new(File.read(config_file)).result)[Rails.env]
-          ::Couchbase.connection_options = config.with_indifferent_access
+          ::Couchbase.connection_options = config.with_indifferent_access.symbolize_keys
         end
       end
 
